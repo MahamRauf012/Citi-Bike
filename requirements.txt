@@ -1,7 +1,6 @@
-streamlit
-plotly
-pandas
-numpy
-matplotlib
-keplergl
-streamlit-keplergl
+streamlit==1.38.0
+plotly==5.22.0
+pandas==2.2.2
+numpy==1.26.4
+matplotlib==3.8.4
+pydeck==0.8.1b0
