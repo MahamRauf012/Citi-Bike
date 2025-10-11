@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-pandas == 1.5.1
-requests == 2.28.1
-json == 2.0.9
-=======
-pandas == 1.5.1
-requests == 2.28.1
-json == 2.0.9
->>>>>>> 6d05bd6ff90c0613556be863332e9603b62dad7a
