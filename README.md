@@ -1,5 +1,9 @@
 # 🚴‍♀️ Citi Bike Dashboard  
 
+# Citi Bike Dashboard
+
+Interactive Python dashboard built with Streamlit, Plotly, and Kepler.gl.
+To run locally:
 This project was created as part of the **CareerFoundry Data Analytics Program (Achievement 2)** to demonstrate how to build an **interactive dashboard using Plotly and Streamlit**.
 
 ---
