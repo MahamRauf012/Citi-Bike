@@ -1,6 +1,9 @@
-streamlit==1.38.0
-plotly==5.22.0
 pandas==2.2.2
 numpy==1.26.4
-matplotlib==3.8.4
-pydeck==0.8.1b0
+plotly==5.13.0
+streamlit==1.20.0
+matplotlib==3.7.1
+streamlit_keplergl==0.3.0
+keplergl==0.3.7
+pillow==9.4.0
+numerize==0.12
