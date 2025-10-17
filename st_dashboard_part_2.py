@@ -188,8 +188,8 @@ else:
     st.header("✅ Conclusions & Recommendations")
 
     # Add recommendation image
-    if os.path.exists("Recommendation.avif"):
-        st.image("Recommendation.avif", caption="Strategic Recommendations and Operational Planning", use_column_width=True)
+    if os.path.exists("Recommendation.JPG"):
+        st.image("Recommendation.JPG", caption="Strategic Recommendations and Operational Planning", use_column_width=True)
     else:
         st.warning("Recommendation image not found. Please ensure 'Recommendation.avif' is in the same folder as this file.")
 
@@ -213,4 +213,4 @@ else:
     With data-driven planning, Citi Bike can improve **operational efficiency**, **user satisfaction**, and **system scalability**.
     """)
 
-    st.success("🎉 Dashboard completed – ready for presentation and portfolio use!")
+    
