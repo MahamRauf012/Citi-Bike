@@ -190,7 +190,7 @@ else:
     if os.path.exists("Recommendation.JPG"):
         st.image("Recommendation.JPG", caption="Strategic Recommendations and Operational Planning", use_column_width=True)
     else:
-        st.warning("Recommendation image not found. Please ensure 'Recommendation.avif' is in the same folder as this file.")
+        st.warning("Recommendation image not found. Please ensure 'Recommendation.JPG' is in the same folder as this file.")
 
     st.markdown("""
     ### Summary of Findings
