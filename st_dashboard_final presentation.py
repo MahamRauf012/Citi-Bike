@@ -59,7 +59,7 @@ if page == "Intro Page":
 
     # Add the actual Intro image
     if os.path.exists("Intro.jpg"):
-        st.image("Intro.jpg", caption="Citi Bike Stations Across New York City", use_column_width=True)
+        st.image("Intro.jpg", caption="Citi Bike Stations Across New York City",  use_container_width=True)
     else:
         st.warning("Intro image not found. Please ensure 'Intro.jpg' is in the same folder as this file.")
 
@@ -170,7 +170,14 @@ elif page == "Interactive Map":
     if os.path.exists(map_file):
         with open(map_file, 'r', encoding='utf-8') as f:
             html_data = f.read()
-        st.components.v1.html(html_data, height=900)
+        
+        # Display map in a larger, centered frame
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.components.v1.html(
+            html_data,
+            height=1200,          # increased height
+            scrolling=False,      # removes inner scrollbars
+        )
         st.caption("Each line represents aggregated bike trips between stations. Thicker lines = higher frequency.")
     else:
         st.error("Map file not found. Please make sure `Final_CitiBike_Map_2.5.html` is in your folder.")
@@ -182,13 +189,14 @@ elif page == "Interactive Map":
     - This data supports planning for **bike lanes, rebalancing trucks,** and **dock placement optimization.**
     """)
 
+
 # ---------------------- RECOMMENDATIONS -------------------------
 else:
     st.header("✅ Conclusions & Recommendations")
 
     # Add recommendation image
     if os.path.exists("Recommendation.jpg"):
-        st.image("Recommendation.jpg", caption="Strategic Recommendations and Operational Planning", use_column_width=True)
+        st.image("Recommendation.jpg", caption="Strategic Recommendations and Operational Planning",  use_container_width=True)
     else:
         st.warning("Recommendation image not found. Please ensure 'Recommendation.jpg' is in the same folder as this file.")
 
