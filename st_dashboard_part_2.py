@@ -1,6 +1,5 @@
 # ================================================================
-# Streamlit Dashboard – Citi Bike Strategy Dashboard (New York)
-# Achievement 2.7 (Final - Enhanced Explanations + Correct Image Paths)
+# Citi Bike Strategy Dashboard (New York)
 # ================================================================
 
 import streamlit as st
