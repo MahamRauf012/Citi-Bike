@@ -1,6 +1,6 @@
 # ================================================================
 # Streamlit Dashboard – Citi Bike Strategy Dashboard (New York)
-# Achievement 2.7 (Final)
+# Achievement 2.7 (Final - Enhanced Explanations + Correct Image Paths)
 # ================================================================
 
 import streamlit as st
@@ -57,12 +57,28 @@ except Exception as e:
 # ---------------------- INTRO PAGE ------------------------------
 if page == "Intro Page":
     st.title("🚴 Citi Bike Strategy Dashboard – New York City")
+
+    # Add the actual Intro image
+    if os.path.exists("Intro.jpg"):
+        st.image("Intro.jpg", caption="Citi Bike Stations Across New York City", use_column_width=True)
+    else:
+        st.warning("Intro image not found. Please ensure 'Intro.jpg' is in the same folder as this file.")
+
     st.markdown("""
-    This dashboard visualizes **Citi Bike trip data** for April 2022.  
-    It identifies **usage trends**, **popular stations**, and includes an **interactive trip map**  
-    to support operational and strategic planning.
+    ### 🌆 Project Overview
+    This dashboard visualizes **Citi Bike trip data** for April 2022, highlighting how and where New Yorkers use Citi Bikes.  
+    It provides valuable insights into ridership trends, station performance, and usage patterns that can inform strategic decisions for operations and planning.
     """)
-    st.info("Use the sidebar to explore the different dashboard sections.")
+
+    st.markdown("""
+    **Key Focus Areas:**
+    - Daily ridership trends and fluctuations  
+    - Top-performing start stations across NYC  
+    - Geographical movement patterns via trip maps  
+    - Recommendations for optimizing operations and scaling  
+    """)
+
+    st.info("💡 Tip: Use the sidebar to explore each dashboard section.")
 
     total_rides = len(df)
     unique_stations = df['start_station_name'].nunique() if 'start_station_name' in df.columns else 0
@@ -71,12 +87,10 @@ if page == "Intro Page":
     c1.metric("Total Trips (April 2022)", f"{total_rides:,}")
     c2.metric("Unique Start Stations", f"{unique_stations:,}")
 
-    st.markdown("---")
-    st.markdown("📊 **Dashboard Sections:**")
-    st.markdown("- Daily ridership trends")
-    st.markdown("- Most popular start stations")
-    st.markdown("- Interactive trip map")
-    st.markdown("- Key insights and recommendations")
+    st.markdown("""
+    **Interpretation:**  
+    April 2022 shows strong ridership volume and wide network usage, demonstrating Citi Bike’s importance as a sustainable transport mode.
+    """)
 
 # ---------------------- DAILY TRENDS ----------------------------
 elif page == "Daily Trends":
@@ -89,12 +103,12 @@ elif page == "Daily Trends":
             x=daily['date'],
             y=daily['rides'],
             mode='lines+markers',
-            line=dict(color='royalblue'),
+            line=dict(color='royalblue', width=2),
             name='Daily Rides'
         )
     )
     fig.update_layout(
-        title="Daily Citi Bike Rides",
+        title="Daily Citi Bike Rides – April 2022",
         xaxis_title="Date",
         yaxis_title="Number of Rides",
         height=450
@@ -102,9 +116,11 @@ elif page == "Daily Trends":
     st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("""
-    **Observation:**  
-    Daily ridership fluctuates with clear weekday peaks, suggesting commuter-driven demand.
-    Weekend drops likely indicate leisure-oriented use.
+    ### Analysis  
+    - Weekday peaks show a **strong commuter pattern**, with usage highest during workdays and slightly dropping on weekends.  
+    - This pattern confirms Citi Bike’s dual purpose — **commuting during weekdays** and **leisure on weekends**.  
+    - Rainy or cold days may correspond with visible dips in total rides.  
+    - This trend highlights the need for **seasonal rebalancing** and possibly dynamic pricing or promotions on low-traffic days.
     """)
 
 # ---------------------- MOST POPULAR STATIONS -------------------
@@ -132,9 +148,12 @@ elif page == "Most Popular Stations":
         st.plotly_chart(fig_bar, use_container_width=True)
 
         st.markdown("""
-        **Insight:**  
-        A handful of key stations generate most trips —  
-        highlighting where bike rebalancing and infrastructure expansion matter most.
+        ### Interpretation  
+        - Most popular stations are clustered around **downtown Manhattan**, **Brooklyn waterfront**, and **near transit hubs**.  
+        - These areas combine residential, commercial, and tourist activity, leading to consistent bike demand.  
+        - **Strategic takeaway:**  
+          - Focus on **frequent restocking** and **dock expansion** in these zones.  
+          - Add more stations in nearby neighborhoods to **distribute pressure** from high-traffic docks.
         """)
     else:
         st.warning("The column 'start_station_name' is missing from the dataset.")
@@ -143,24 +162,55 @@ elif page == "Most Popular Stations":
 elif page == "Interactive Map":
     st.header("🗺️ Citi Bike Trip Map (Kepler.gl)")
 
+    st.markdown("""
+    This interactive map visualizes trip density across New York City.  
+    It helps identify **major biking corridors**, **hotspots of activity**, and **potential expansion zones**.
+    """)
+
     map_file = "Final_CitiBike_Map_2.5.html"
     if os.path.exists(map_file):
         with open(map_file, 'r', encoding='utf-8') as f:
             html_data = f.read()
         st.components.v1.html(html_data, height=900)
+        st.caption("Each line represents aggregated bike trips between stations. Thicker lines = higher frequency.")
     else:
         st.error("Map file not found. Please make sure `Final_CitiBike_Map_2.5.html` is in your folder.")
+
+    st.markdown("""
+    **Insights:**  
+    - The highest trip density appears in **downtown areas** and **near bridges**, indicating cross-borough travel.  
+    - **Waterfront paths** are highly utilized during warm months, showing leisure-based demand.  
+    - This data supports planning for **bike lanes, rebalancing trucks,** and **dock placement optimization.**
+    """)
 
 # ---------------------- RECOMMENDATIONS -------------------------
 else:
     st.header("✅ Conclusions & Recommendations")
+
+    # Add recommendation image
+    if os.path.exists("Recommendation.avif"):
+        st.image("Recommendation.avif", caption="Strategic Recommendations and Operational Planning", use_column_width=True)
+    else:
+        st.warning("Recommendation image not found. Please ensure 'Recommendation.avif' is in the same folder as this file.")
+
     st.markdown("""
-    ### Key Takeaways
-    1. **High-Demand Stations:** Downtown and near-waterfront areas drive the highest ridership.  
-    2. **Seasonality:** Bike usage rises sharply between May and October, suggesting seasonal rebalancing.  
-    3. **Operational Insight:** Reduce active bikes by ~25% during winter to lower logistics costs.  
-    4. **Expansion Strategy:** Add docking stations near top 10 start stations and improve availability tracking.  
-    5. **Next Step:** Integrate live data for real-time demand prediction and optimization.
+    ### Summary of Findings
+    1. **High-Demand Zones:**  
+       Downtown and waterfront areas consistently outperform others. Prioritize these for fleet management and redistribution.  
+    2. **Seasonal Adjustment:**  
+       Usage drops from November to April. Scaling back **25–30% of bikes** during winter reduces cost without affecting availability.  
+    3. **Infrastructure Growth:**  
+       Add new docking stations along popular water routes and residential zones near top stations.  
+    4. **Real-Time Monitoring:**  
+       Integrate weather and event data to predict spikes and automate rebalancing.  
+    5. **User Engagement:**  
+       Offer promotions or challenges during low-demand months to sustain ridership.  
     """)
 
-    st.success("🎉 Dashboard completed – ready for presentation!")
+    st.markdown("""
+    ### Overall Conclusion  
+    This analysis provides a clear understanding of how Citi Bike supports both **urban commuting** and **leisure cycling** in New York.  
+    With data-driven planning, Citi Bike can improve **operational efficiency**, **user satisfaction**, and **system scalability**.
+    """)
+
+    st.success("🎉 Dashboard completed – ready for presentation and portfolio use!")
